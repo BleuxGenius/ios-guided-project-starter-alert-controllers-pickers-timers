@@ -38,7 +38,7 @@ class CountdownViewController: UIViewController {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }
-    
+
     private var duration: TimeInterval {
         let minuteString = countdownPicker.selectedRow(inComponent: 0)
         let secondString = countdownPicker.selectedRow(inComponent: 2)
@@ -123,6 +123,8 @@ class CountdownViewController: UIViewController {
         return dateformatter.string(from: date)
     }
     }
+
+// MARK: - Extensions 
 extension CountdownViewController: CountdownDelegate {
     func countdownDidUpdate(timeRemaining: TimeInterval) {
         updateViews()
@@ -157,8 +159,9 @@ extension CountdownViewController: UIPickerViewDelegate {
         let timeValue = countdownPickerData[component][row]
         return timeValue
     }
-    
+//     when you spin the wheel all the components in this row will change the value from the picker to the text in the time label.
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//         calls the duration from the computed property
         countdown.duration = duration
         updateViews()
     }
